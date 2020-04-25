@@ -1,0 +1,23 @@
+Jogo da velha
+
+Versão local
+    Traçar linha do jogo vencedor
+    Identificar quem ganhou
+    Adequar apresentação para ter nome dos jogadores e pontuação
+    Colocar cores diferentes para cada jogador
+    Possibilitar início e fim de partida com score
+
+Versão distribuída
+    Incluir websocket
+    Criar apis para execução de comandos
+    Renderizar comandos de forma distribuída
+
+Itens de segurança    
+    Gravar estado do jogo no servidor
+    Criar login
+    Logar com facebook
+
+Evoluir design do jogo
+    Avaliar uso de lib externa
+    Animações para cada
+
