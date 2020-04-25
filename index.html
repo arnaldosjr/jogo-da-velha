@@ -20,10 +20,10 @@
       canvas.width = boxSize;
       var ctx = canvas.getContext("2d");
       var isDrawOptionX = true;
-      // criar lista de itens marcados
+      var positions = [];
 
       createBoard(boxSize);
- 
+
       document.getElementById("clear").addEventListener(
         "click",
         function () {
@@ -36,19 +36,23 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         createBoard(boxSize);
+        positions = [];
         // limpar lista de itens marcados
       }
 
       function drawOption(verticalPosition, horizontalPosition) {
-        // se a posição ja existir na lista não executa nada
-
-        if (isDrawOptionX) {
-          drawOptionX(boxSize, verticalPosition, horizontalPosition);
-        } else {
-          drawOptionO(boxSize, verticalPosition, horizontalPosition);
+        let blockId = verticalPosition + "-" + horizontalPosition;
+        // se a posição nao existir na lista, marca e adiciona
+        if (positions.indexOf(blockId) === -1) {         
+          if (isDrawOptionX) {
+            drawOptionX(boxSize, verticalPosition, horizontalPosition);
+          } else {
+            drawOptionO(boxSize, verticalPosition, horizontalPosition);
+          }
+          isDrawOptionX = !isDrawOptionX;
+          // incluir posicao na lista de itens marcados
+          positions.push(blockId);
         }
-        isDrawOptionX = !isDrawOptionX;
-        // incluir posicao na lista de itens marcados
       }
 
       function printMousePos(event) {
@@ -86,7 +90,7 @@
         }
         document.getElementById(
           "mousePosition"
-        ).innerText = `Posição clientX: ${x} - clientY: ${y}`;
+        ).innerText = `Posição clientX: ${x} - clientY: ${y} - Posições ${positions}`;
       }
 
       canvas.addEventListener("click", printMousePos);
